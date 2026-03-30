@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { ImPower } from "react-icons/im";
 
 const SignUp = () => {
   const { login } = useAuth();
@@ -35,17 +36,21 @@ const SignUp = () => {
   };
   return (
     <div className="flex justify-between">
-      <div className="flex-1 relative  bg-sky-600">
-        <div className=" absolute inset-0 opacity-100 bg-sky-600">
-          <div className="absolute w-64 top-1/4 left-1/4 h-64 rounded-full blur-3xl bg-sky-300/50"></div>
-          <div className="absolute w-90 top-1/3 left-1/3 h-90 rounded-full blur-3xl bg-sky-300/50"></div>
+      <div className="flex-1 relative  bg-indigo-800">
+        <div className=" absolute inset-0 opacity-100 bg-indigo-400/50">
+          <div className="absolute w-64 top-1/4 left-1/4 h-64 rounded-full blur-3xl bg-indigo-300/50"></div>
+          <div className="absolute w-90 top-1/3 left-1/3 h-90 rounded-full blur-3xl bg-indigo-300/50"></div>
         </div>
         <div className="relative z-10 flex flex-col gap-8 px-20 justify-center h-full text-white">
           <div className="flex gap-3 ">
-            <h1>logo</h1>
-            <h2>pulse</h2>
+            <div className="flex items-center gap-5">
+              <div className="h-15 w-15 flex items-center justify-center bg-white/20 backdrop-blur-md text-3xl rounded-2xl">
+                <ImPower />
+              </div>
+              <h2 className="font-bold text-4xl">Pulse</h2>
+            </div>
           </div>
-          <div className="dvi">
+          <div className="text-2xl">
             <p>
               Where ideas spark conversations. Join a community of thinkers,
               builders, and creators.
@@ -53,14 +58,16 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-1 items-center justify-center h-screen bg-sky-100">
+      <div className="flex flex-1 items-center justify-center h-screen ">
         <form
           onSubmit={handleCreateAccount}
-          className="bg-sky-200/50 p-6 rounded-xl shadow-md w-120 h-120 flex flex-col gap-2 "
+          className=" p-6 rounded-xl  w-120 h-auto flex flex-col gap-2 "
         >
           <div className="flex flex-col mb-4">
-            <h2 className="text-2xl font-bold  ">Create your account</h2>
-            <h2>Join the conversation today</h2>
+            <h2 className="text-3xl font-bold  ">Create your account</h2>
+            <h2 className="text-gray-400 text-lg">
+              Join the conversation today
+            </h2>
           </div>
           <h2>Display name</h2>
           <input
@@ -69,16 +76,16 @@ const SignUp = () => {
             placeholder="Enter name"
             value={form.displayname}
             onChange={handleChange}
-            className="w-full mb-3 p-2 border h-13 rounded-xl"
+            className="w-full mb-3 p-2 border border-gray-300 outline-none h-13 rounded-xl"
           />
-          <h2>handle</h2>
+          <h2>Handle</h2>
           <input
             type="name"
             name="username"
             placeholder="username"
             value={form.username}
             onChange={handleChange}
-            className="w-full mb-3 p-2 border h-13 rounded-xl"
+            className="w-full mb-3 p-2 border border-gray-300 outline-none h-13 rounded-xl"
           />
           <h2>Password</h2>
           <input
@@ -87,12 +94,12 @@ const SignUp = () => {
             placeholder="Enter password"
             value={form.password}
             onChange={handleChange}
-            className="w-full mb-4 p-2 h-13 border rounded-xl"
+            className="w-full mb-4 p-2 h-13 border border-gray-300 outline-none rounded-xl"
           />
 
           <button
             type="submit"
-            className="w-full h-13 bg-sky-400/50 text-black py-2 rounded-xl hover:bg-sky-600 hover:text-white"
+            className="w-full cursor-pointer h-13 bg-indigo-500 text-white font-semibold text-lg py-2 rounded-xl hover:bg-indigo-400 hover:text-white"
           >
             Create account
           </button>
@@ -102,7 +109,7 @@ const SignUp = () => {
               <button
                 type="button"
                 onClick={() => navigate("/login")}
-                className="font-semibold text-sky-600"
+                className="font-semibold text-indigo-600 cursor-pointer"
               >
                 Sign in
               </button>

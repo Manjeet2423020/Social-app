@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { ImPower } from "react-icons/im";
 
 const Login = () => {
   const { login } = useAuth();
@@ -47,10 +48,14 @@ const Login = () => {
         </div>
         <div className="relative z-10 flex flex-col gap-8 px-20 justify-center h-full text-white">
           <div className="flex gap-3 ">
-            <h1>logo</h1>
-            <h2>pulse</h2>
+            <div className="flex items-center gap-5">
+              <div className="h-15 w-15 flex items-center justify-center bg-white/20 backdrop-blur-md text-3xl rounded-2xl">
+                <ImPower />
+              </div>
+              <h2 className="font-bold text-4xl">Pulse</h2>
+            </div>
           </div>
-          <div className="dvi">
+          <div className="text-2xl">
             <p>
               Where ideas spark conversations. Join a community of thinkers,
               builders, and creators.
@@ -64,8 +69,10 @@ const Login = () => {
           className=" p-6 rounded-xl  w-120 h-120 flex flex-col gap-2 "
         >
           <div className="flex flex-col mb-4">
-            <h2 className="text-2xl font-bold  ">Welcome back</h2>
-            <h2>Sign in to continue to Pulse</h2>
+            <h2 className="text-3xl font-bold  ">Welcome back</h2>
+            <h2 className="text-gray-400 text-lg">
+              Sign in to continue to Pulse
+            </h2>
           </div>
           <h2>Email</h2>
           <input
@@ -74,7 +81,7 @@ const Login = () => {
             placeholder="Enter email"
             value={form.email}
             onChange={handleChange}
-            className="w-full mb-3 p-2 border border-gray-300 h-13 rounded-xl"
+            className="w-full mb-3 p-2 border outline-none border-gray-300 h-13 rounded-xl"
           />
           <h2>Password</h2>
           <input
@@ -83,22 +90,22 @@ const Login = () => {
             placeholder="Enter password"
             value={form.password}
             onChange={handleChange}
-            className="w-full mb-4 p-2 h-13 border border-gray-300 rounded-xl"
+            className="w-full mb-4 p-2 h-13 border outline-none border-gray-300 rounded-xl"
           />
 
           <button
             type="submit"
-            className="w-full h-13 bg-violet-400/50 text-black py-2 rounded-xl hover:bg-violet-600 hover:text-white"
+            className="w-full h-13 cursor-pointer bg-indigo-500 text-white font-semibold text-lg py-2 rounded-xl  hover:bg-indigo-400 hover:text-white"
           >
             Login
           </button>
-          <div className="flex items-center justify-center mt-5">
+          <div className="flex items-center justify-center mt-5 text-lg ">
             <p>
-              Don't have an account?{" "}
+              <span className="text-gray-400 mx-1">Don't have an account?</span>
               <button
                 type="button"
                 onClick={() => navigate("/signup")}
-                className="font-semibold text-violet-600"
+                className="font-semibold text-indigo-600 cursor-pointer"
               >
                 Sign up
               </button>
