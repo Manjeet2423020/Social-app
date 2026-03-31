@@ -41,7 +41,7 @@ const Login = () => {
 
   return (
     <div className="flex justify-between">
-      <div className="hidden lg:block flex-1 relative  bg-indigo-800">
+      <div className="hidden lg:block flex-1 relative  bg-indigo-800 transition-all duration-300">
         <div className=" absolute inset-0 opacity-100 bg-indigo-400/50">
           <div className="absolute w-64 top-1/4 left-1/4 h-64 rounded-full blur-3xl bg-indigo-300/50"></div>
           <div className="absolute w-90 top-1/3 left-1/3 h-90 rounded-full blur-3xl bg-indigo-300/50"></div>

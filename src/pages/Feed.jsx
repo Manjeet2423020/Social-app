@@ -67,7 +67,7 @@ const Feed = () => {
       }
     >
       <div className=" border-b border-gray-300 h-15   ">
-        <div className="lg:px-[28%] sm:flex justify-center sm:px-[10%] px-10 h-full bg-black/2  ">
+        <div className="lg:px-[28%] flex justify-center sm:px-[10%] px-10 h-full bg-black/2  ">
           <div className="flex justify-between h-full items-center lg:w-full">
             <div className="flex items-center text-2xl gap-2">
               <div className=" bg-white/10  h-8 w-8 rounded-xl flex items-center justify-center text-violet-700">
@@ -77,7 +77,7 @@ const Feed = () => {
             </div>
             <div className="flex  gap-4 text-xl items-center ">
               <input
-                className="lg:w-80   bg-black/5 h-8 outline-none rounded-xl p-2 text-xs"
+                className="lg:w-80 md:w-50 w-20 ml-5  bg-black/5 h-8 outline-none rounded-xl p-2 text-xs transition-all duration-300 "
                 type="text"
                 placeholder=" search"
                 value={search}
@@ -107,7 +107,7 @@ const Feed = () => {
           </div>
         </div>
       </div>
-      <div className="lg:px-[28%] sm:flex justify-center sm:px-[10%] px-10 pt-8 bg-black/2">
+      <div className="lg:px-[28%] sm:flex justify-center sm:px-[10%] px-10 pt-8 bg-black/2 transition-all duration-300">
         {/* mockdata ui */}
 
         <div className="flex flex-col gap-6">
