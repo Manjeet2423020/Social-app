@@ -61,11 +61,13 @@ const SignUp = () => {
       <div className="flex flex-1 items-center justify-center h-screen ">
         <form
           onSubmit={handleCreateAccount}
-          className=" p-6 rounded-xl  w-120 h-auto flex flex-col gap-2 "
+          className=" p-6 rounded-xl  lg:w-120 w-80  h-120 flex flex-col gap-2 transition-all duration-300 "
         >
           <div className="flex flex-col mb-4">
-            <h2 className="text-3xl font-bold  ">Create your account</h2>
-            <h2 className="text-gray-400 text-lg">
+            <h2 className="lg:text-3xl font-bold text-xl  ">
+              Create your account
+            </h2>
+            <h2 className="text-gray-400 lg:text-lg text-baselg:">
               Join the conversation today
             </h2>
           </div>
@@ -76,7 +78,7 @@ const SignUp = () => {
             placeholder="Enter name"
             value={form.displayname}
             onChange={handleChange}
-            className="w-full mb-3 p-2 border border-gray-300 outline-none h-13 rounded-xl"
+            className="w-full mb-3 p-2 border border-gray-300 outline-none lg:h-13 h-10 rounded-xl"
           />
           <h2>Handle</h2>
           <input
@@ -85,7 +87,7 @@ const SignUp = () => {
             placeholder="username"
             value={form.username}
             onChange={handleChange}
-            className="w-full mb-3 p-2 border border-gray-300 outline-none h-13 rounded-xl"
+            className="w-full mb-3 p-2 border border-gray-300 outline-none lg:h-13 h-10 rounded-xl"
           />
           <h2>Password</h2>
           <input
@@ -94,12 +96,12 @@ const SignUp = () => {
             placeholder="Enter password"
             value={form.password}
             onChange={handleChange}
-            className="w-full mb-4 p-2 h-13 border border-gray-300 outline-none rounded-xl"
+            className="w-full mb-4 p-2 lg:h-13 h-10 border border-gray-300 outline-none rounded-xl"
           />
 
           <button
             type="submit"
-            className="w-full cursor-pointer h-13 bg-indigo-500 text-white font-semibold text-lg py-2 rounded-xl hover:bg-indigo-400 hover:text-white"
+            className="w-full cursor-pointer lg:h-13 h-10 bg-indigo-500 text-white font-semibold text-lg py-2 rounded-xl hover:bg-indigo-400 hover:text-white"
           >
             Create account
           </button>
