@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { FaUser } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
-import { CiHeart } from "react-icons/ci";
+import { IoMdHeart } from "react-icons/io";
 import { ImPower } from "react-icons/im";
 import { useAuth } from "../context/AuthContext";
 import { useSelector, useDispatch } from "react-redux";
@@ -66,9 +66,9 @@ const Feed = () => {
         theme === "dark" ? "bg-black text-white" : "bg-white text-black"
       }
     >
-      <div className="w-full border-b border-gray-300 h-15   ">
-        <div className="px-[28%] flex h-full bg-black/2  ">
-          <div className="flex justify-between h-full items-center w-full">
+      <div className=" border-b border-gray-300 h-15   ">
+        <div className="lg:px-[28%] sm:flex justify-center sm:px-[10%] px-10 h-full bg-black/2  ">
+          <div className="flex justify-between h-full items-center lg:w-full">
             <div className="flex items-center text-2xl gap-2">
               <div className=" bg-white/10  h-8 w-8 rounded-xl flex items-center justify-center text-violet-700">
                 <ImPower className=" text-lg" />
@@ -77,7 +77,7 @@ const Feed = () => {
             </div>
             <div className="flex  gap-4 text-xl items-center ">
               <input
-                className="w-80 bg-black/5 h-8 outline-none rounded-xl p-2 text-xs"
+                className="lg:w-80   bg-black/5 h-8 outline-none rounded-xl p-2 text-xs"
                 type="text"
                 placeholder=" search"
                 value={search}
@@ -107,7 +107,7 @@ const Feed = () => {
           </div>
         </div>
       </div>
-      <div className="px-[28%] pt-8 bg-black/2">
+      <div className="lg:px-[28%] sm:flex justify-center sm:px-[10%] px-10 pt-8 bg-black/2">
         {/* mockdata ui */}
 
         <div className="flex flex-col gap-6">
@@ -176,6 +176,7 @@ const Feed = () => {
                 (c) => c.postId === post.id,
               );
               const postLikes = allLikes.filter((l) => l.postId === post.id);
+              const liked = postLikes.some((like) => like.userId === user.id);
 
               return (
                 <div
@@ -217,7 +218,11 @@ const Feed = () => {
                         >
                           <button className="flex items-center text-base hover:bg-gray-200 rounded-2xl p-1 px-3 gap-2">
                             {" "}
-                            <CiHeart className="text-2xl font-bold" />
+                            <IoMdHeart
+                              className={`text-2xl ${
+                                liked ? "text-red-500" : "text-gray-300"
+                              }`}
+                            />
                             {postLikes.length}
                           </button>
                         </div>
