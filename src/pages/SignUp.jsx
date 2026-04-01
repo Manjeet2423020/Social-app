@@ -64,6 +64,12 @@ const SignUp = () => {
           className=" p-6 rounded-xl  lg:w-120 w-80  h-120 flex flex-col gap-2 transition-all duration-300 "
         >
           <div className="flex flex-col mb-4">
+            <div className="flex items-center gap-2 mb-3 lg:hidden">
+              <div className="h-10 w-10 flex items-center justify-center bg-violet-200/50 backdrop-blur-md text-xl rounded-xl">
+                <ImPower />
+              </div>
+              <h2 className="font-bold text-2xl">Pulse</h2>
+            </div>
             <h2 className="lg:text-3xl font-bold text-xl  ">
               Create your account
             </h2>
