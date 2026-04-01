@@ -69,6 +69,12 @@ const Login = () => {
           className=" p-6 rounded-xl  lg:w-120 lg:h-120 md:w-80 md:h-80 flex flex-col gap-2 transition-all duration-300 "
         >
           <div className="flex flex-col mb-4">
+            <div className="flex items-center gap-2 mb-3 lg:hidden">
+              <div className="h-10 w-10 flex items-center justify-center bg-violet-200/50 backdrop-blur-md text-xl rounded-xl">
+                <ImPower />
+              </div>
+              <h2 className="font-bold text-2xl">Pulse</h2>
+            </div>
             <h2 className="lg:text-3xl font-bold text-xl ">Welcome back</h2>
             <h2 className="text-gray-400 lg:text-lg text-base">
               Sign in to continue to Pulse
