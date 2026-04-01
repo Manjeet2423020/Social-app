@@ -91,7 +91,7 @@ const Feed = () => {
                 <CiSearch />
               </span>
               <input
-                className="lg:w-55 md:w-50 sm:w-40 w-20 ml-5  bg-black/5 h-8 outline-none rounded-xl pl-8 text-xs transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500 text-black dark:text-white "
+                className="lg:w-55 md:w-50 sm:w-40 w-20 ml-5  bg-black/5 h-8 outline-none rounded-xl pl-8 text-xs transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500 "
                 type="text"
                 placeholder=" search..."
                 value={search}
@@ -138,7 +138,7 @@ const Feed = () => {
                     .toUpperCase()}
                 </div>
                 <input
-                  className="w-full outline-none  placeholder-gray-400 dark:placeholder-gray-500 text-black dark:text-white "
+                  className="w-full outline-none  placeholder-gray-400 dark:placeholder-gray-500  "
                   type="text"
                   placeholder="What's on your mind"
                   value={content}
@@ -292,10 +292,10 @@ const Feed = () => {
 
                           {/* input comment */}
 
-                          <div className="flex gap-2  items-center">
+                          <div className="flex gap-2  w-full items-center">
                             <input
                               type="text"
-                              className="bg-gray-300 dark:bg-white/10 dark:text-white text-black placeholder-gray-400  rounded-2xl p-2 w-95 flex-1 mt-2 outline-none "
+                              className="bg-gray-300 dark:bg-white/10  placeholder-gray-400  rounded-2xl p-2  flex-1 mt-2 outline-none "
                               placeholder="Write a reply..."
                               value={commentInputs[post.id] || ""}
                               onChange={(e) =>
