@@ -6,6 +6,8 @@ import { FaUser } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { IoMdHeart } from "react-icons/io";
 import { ImPower } from "react-icons/im";
+import { CiSearch } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
 import { useSelector, useDispatch } from "react-redux";
 import { addPosts } from "../features/post/postSlice";
@@ -21,6 +23,7 @@ const Feed = () => {
   const [openComments, setOpenComments] = useState({});
   const [commentInputs, setCommentInputs] = useState({});
   const [search, setSearch] = useState("");
+  const [bookmarks, setBookmarks] = useState([]);
 
   const { logout, user } = useAuth();
   const navigate = useNavigate();
@@ -55,6 +58,14 @@ const Feed = () => {
     }));
   };
 
+  const toggleBookmark = (postId) => {
+    if (bookmarks.includes(postId)) {
+      setBookmarks(bookmarks.filter((id) => id !== postId));
+    } else {
+      setBookmarks([...bookmarks, postId]);
+    }
+  };
+
   const colors = ["bg-red-300", "bg-blue-300", "bg-purple-300"];
   const [bg] = useState(() => {
     return colors[Math.floor(Math.random() * colors.length)];
@@ -67,28 +78,31 @@ const Feed = () => {
       }
     >
       <div className=" border-b border-gray-300 h-15   ">
-        <div className="lg:px-[28%] flex justify-center sm:px-[10%] px-10 h-full bg-black/2  ">
-          <div className="flex justify-between h-full items-center lg:w-full">
+        <div className="lg:px-[28%] flex justify-center  px-10 h-full bg-black/2  ">
+          <div className="flex justify-between h-full items-center lg:w-full md:w-full  sm:px-10 md:px-10 lg:px-0 transition-all duration-300">
             <div className="flex items-center text-2xl gap-2">
-              <div className=" bg-white/10  h-8 w-8 rounded-xl flex items-center justify-center text-violet-700">
+              <div className=" dark:bg-white/20 bg-gray-200 h-8 w-8 rounded-xl flex items-center justify-center text-violet-700">
                 <ImPower className=" text-lg" />
               </div>
               <h1 className="font-bold text-lg"> Pulse</h1>
             </div>
-            <div className="flex  gap-4 text-xl items-center ">
+            <div className="flex  gap-4 text-xl items-center relative ">
+              <span className="absolute left-7 -translate-y-1/2 top-1/2 text-base text-gray-500">
+                <CiSearch />
+              </span>
               <input
-                className="lg:w-80 md:w-50 w-20 ml-5  bg-black/5 h-8 outline-none rounded-xl p-2 text-xs transition-all duration-300 "
+                className="lg:w-55 md:w-50 sm:w-40 w-20 ml-5  bg-black/5 h-8 outline-none rounded-xl pl-8 text-xs transition-all duration-300 placeholder-gray-400 dark:placeholder-gray-500 text-black dark:text-white "
                 type="text"
-                placeholder=" search"
+                placeholder=" search..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
 
               <button onClick={toggleTheme}>
-                <MdOutlineDarkMode className="text-lg text-gray-500" />
+                <MdOutlineDarkMode className="text-lg text-gray-500 cursor-pointer" />
               </button>
               <div
-                className={`${bg} h-8 w-8 rounded-full  border-2 border-gray-200 border flex items-center justify-center text-xs font-bold text-white`}
+                className={`${bg} h-8 w-8 rounded-full  border-2 border-gray-200  flex items-center justify-center text-xs font-bold text-white`}
               >
                 <h1>{user?.email?.slice(0, 2).toUpperCase()}</h1>
                 <h1>{user?.displayname?.slice(0, 2).toUpperCase()}</h1>
@@ -99,7 +113,7 @@ const Feed = () => {
                   logout();
                   navigate("/login");
                 }}
-                className="text-gray-500 text-lg"
+                className="text-gray-500 text-lg cursor-pointer"
               >
                 <MdLogout />
               </button>
@@ -124,7 +138,7 @@ const Feed = () => {
                     .toUpperCase()}
                 </div>
                 <input
-                  className="w-full outline-none   "
+                  className="w-full outline-none  placeholder-gray-400 dark:placeholder-gray-500 text-black dark:text-white "
                   type="text"
                   placeholder="What's on your mind"
                   value={content}
@@ -140,7 +154,7 @@ const Feed = () => {
                       setIsActive(false);
                       setContent("");
                     }}
-                    className=" px-3 py-1 rounded h-8"
+                    className=" px-3 py-1 rounded h-8 cursor-pointer"
                   >
                     Cancel
                   </button>
@@ -149,7 +163,8 @@ const Feed = () => {
                       handlePost();
                       setIsActive(false);
                     }}
-                    className="text-white h-8 px-3 py-2 rounded-xl flex items-center gap-2 font-semibold bg-violet-500/80 cursor-pointer hover:bg-violet-400 "
+                    disabled={content.trim() === ""}
+                    className={`text-white h-8 px-3 py-2 rounded-xl flex items-center gap-2 font-semibold  ${content.trim() === "" ? "bg-violet-300 " : "bg-violet-400 hover:bg-violet-500 cursor-pointer"}`}
                   >
                     <FiSend /> Post
                   </button>
@@ -177,6 +192,7 @@ const Feed = () => {
               );
               const postLikes = allLikes.filter((l) => l.postId === post.id);
               const liked = postLikes.some((like) => like.userId === user.id);
+              const bookmarked = bookmarks.includes(post.id);
 
               return (
                 <div
@@ -194,11 +210,11 @@ const Feed = () => {
                       </div>
                     </div>
                     <div className="flex flex-col gap-3">
-                      <div className="flex gap-3 items-center ">
+                      <div className="flex  items-center ">
                         <h4 className="font-semibold text-base">
                           {postOwner?.name}
                         </h4>
-                        <h4 className="text-gray-500 text-sm">
+                        <h4 className="text-gray-500 text-sm ">
                           {postOwner?.username}
                         </h4>
                         <h4 className="font-semibold text-base">{post.name}</h4>
@@ -216,10 +232,10 @@ const Feed = () => {
                             )
                           }
                         >
-                          <button className="flex items-center text-base hover:bg-gray-200 rounded-2xl p-1 px-3 gap-2">
+                          <button className="flex items-center text-base hover:bg-white/10 rounded-2xl p-1 px-3 gap-2">
                             {" "}
                             <IoMdHeart
-                              className={`text-2xl ${
+                              className={`text-2xl cursor-pointer ${
                                 liked ? "text-red-500" : "text-gray-300"
                               }`}
                             />
@@ -227,12 +243,22 @@ const Feed = () => {
                           </button>
                         </div>
                         <div
-                          className="pt-1.5 cursor-pointer"
+                          className=" cursor-pointer"
                           onClick={() => handleToggleComments(post.id)}
                         >
-                          <button className="flex items-center text-lg hover:bg-gray-200 rounded-2xl p-1 px-3 gap-2">
+                          <button className="flex items-center text-lg hover:bg-white/10 rounded-2xl p-1 px-3 gap-2 cursor-pointer">
                             <BiComment />
                             {postComments.length}
+                          </button>
+                        </div>
+                        <div
+                          onClick={() => toggleBookmark(post.id)}
+                          className="ml-auto"
+                        >
+                          <button className="flex items-center justify-end-safe text-base hover:bg-white/10 rounded-2xl p-1 px-3 gap-2 cursor-pointer">
+                            <FaBookmark
+                              className={`text-xl ${bookmarked ? "text-violet-500" : "text-gray-300"}`}
+                            />
                           </button>
                         </div>
                       </div>
@@ -256,7 +282,7 @@ const Feed = () => {
                                   <span className="font-semibold mr-1">
                                     {commentUser?.name || "User"}
                                   </span>
-                                  <p className="text-gray-400 text-sm">
+                                  <p className="text-gray-400  text-sm">
                                     {c.text}
                                   </p>
                                 </div>
@@ -266,10 +292,10 @@ const Feed = () => {
 
                           {/* input comment */}
 
-                          <div className="flex gap-2 items-center">
+                          <div className="flex gap-2  items-center">
                             <input
                               type="text"
-                              className="bg-gray-200 rounded-2xl p-2 flex-1 mt-2 outline-none "
+                              className="bg-gray-300 dark:bg-white/10 dark:text-white text-black placeholder-gray-400  rounded-2xl p-2 w-95 flex-1 mt-2 outline-none "
                               placeholder="Write a reply..."
                               value={commentInputs[post.id] || ""}
                               onChange={(e) =>

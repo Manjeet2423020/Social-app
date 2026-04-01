@@ -1,4 +1,10 @@
 @import "tailwindcss";
+:root {
+  --font-jakarta: "Plus Jakarta Sans", sans-serif;
+}
+body {
+  font-family: var(--font-jakarta);
+}
 /* :root {
   --text: #6b6375;
   --text-h: #08060d;
